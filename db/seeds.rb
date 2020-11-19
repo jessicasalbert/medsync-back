@@ -16,11 +16,11 @@ require 'open-uri'
 require 'json'
 
 
-    doc1 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: "abc123")
-    doc2 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: "abc123")
-    doc3 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: "abc123")
+    doc1 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: BCrypt::Password.create('abc123'))
+    doc2 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: BCrypt::Password.create('abc123'))
+    doc3 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: BCrypt::Password.create('abc123'))
 
-
+    # myrtice@bailey.com
 
     30.times do 
         Patient.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: "abc123", doctor_id: [doc1.id, doc2.id, doc3.id].sample)

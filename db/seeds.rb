@@ -20,12 +20,12 @@ require 'json'
     doc2 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: BCrypt::Password.create('abc123'))
     doc3 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: BCrypt::Password.create('abc123'))
 
-    # myrtice@bailey.com
+    # tracey@kris.biz
 
     30.times do 
-        Patient.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: "abc123", doctor_id: [doc1.id, doc2.id, doc3.id].sample)
+        Patient.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: BCrypt::Password.create('abc123'), doctor_id: [doc1.id, doc2.id, doc3.id].sample)
     end
-
+    #leontine.harvey@braun-hammes.io
 
 def seed_meds
     colors = ["black", "blue", "brown", "gray", "green", "orange", "pink", "purple", "red", "turquoise", "white", "yellow"]

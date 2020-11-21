@@ -29,6 +29,9 @@ class ApplicationController < ActionController::API
       if decoded_token
         user_id = decoded_token[0]['user_id']
         @user = Doctor.find_by(id: user_id)
+        if !@user
+            @user = Patient.find_by(id: user_id)
+        end
       end
     end
    

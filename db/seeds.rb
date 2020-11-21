@@ -16,16 +16,17 @@ require 'open-uri'
 require 'json'
 
 
-    doc1 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: BCrypt::Password.create('abc123'))
+    doc1 = Doctor.create(name: Faker::Name.unique.name, email: "tracey@kris.biz", password_digest: BCrypt::Password.create('abc123'))
     doc2 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: BCrypt::Password.create('abc123'))
     doc3 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: BCrypt::Password.create('abc123'))
 
-    # tracey@kris.biz
+
+    Patient.create(name: Faker::Name.unique.name, email: "leontine.harvey@braun-hammes.io", password_digest: BCrypt::Password.create('abc123'), doctor_id: [doc1.id, doc2.id, doc3.id].sample)
 
     30.times do 
         Patient.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: BCrypt::Password.create('abc123'), doctor_id: [doc1.id, doc2.id, doc3.id].sample)
     end
-    #leontine.harvey@braun-hammes.io
+    
 
 def seed_meds
     colors = ["black", "blue", "brown", "gray", "green", "orange", "pink", "purple", "red", "turquoise", "white", "yellow"]

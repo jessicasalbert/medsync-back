@@ -26,13 +26,14 @@ class ApplicationController < ActionController::API
     end
    
     def current_user
-      if decoded_token
-        user_id = decoded_token[0]['user_id']
-        @user = Doctor.find_by(id: user_id)
-        if !@user
-            @user = Patient.find_by(id: user_id)
+        if decoded_token
+          user_id = decoded_token[0]['user_id']
+          @user = Doctor.find_by(id: user_id)
+          if !@user
+              @user = Patient.find_by(id: user_id)
+          end
+          return @user
         end
-      end
     end
    
     def logged_in?

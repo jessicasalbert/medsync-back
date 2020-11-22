@@ -7,7 +7,7 @@ class CreatePatientMeds < ActiveRecord::Migration[6.0]
       t.integer :patient_id
       t.integer :med_id
       t.integer :pill_count
-      t.boolean :has_taken
+      t.boolean :has_taken, :default => false
 
       t.timestamps
     end

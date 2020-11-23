@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       resources :doctors, only: [:show]
       resources :patients, only: [:show]
       resources :meds, only: [:index]
-      resources :patient_meds, only: [:update, :destroy]
+      resources :patient_meds, only: [:update, :destroy, :create]
       post '/login', to: 'auth#create'
       post '/patientlogin', to: 'auth#createpatient'
       get '/mdprofile', to: 'doctors#profile'

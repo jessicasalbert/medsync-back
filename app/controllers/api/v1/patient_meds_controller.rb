@@ -9,14 +9,19 @@ class Api::V1::PatientMedsController < ApplicationController
     end
 
     def destroy
-    med = PatientMed.find(params[:id])
+        med = PatientMed.find(params[:id])
         med.destroy
         render json: med
+    end
+
+    def create
+        med = PatientMed.create(pt_meds_params)
+        render json: med, serializer: PatientMedSerializer
     end
 
     private
 
     def pt_meds_params
-        params.require(:patient_med).permit(:time, :notes, :pill_count)
+        params.require(:patient_med).permit(:patient_id, :med_id, :time, :notes, :pill_count)
     end
 end

@@ -5,6 +5,7 @@ class Api::V1::PatientMedsController < ApplicationController
     def update 
         @pt_med = PatientMed.find(params[:id])
         @pt_med.update(pt_meds_params)
+        #byebug
         render json: @pt_med
     end
 
@@ -22,6 +23,6 @@ class Api::V1::PatientMedsController < ApplicationController
     private
 
     def pt_meds_params
-        params.require(:patient_med).permit(:patient_id, :med_id, :time, :notes, :pill_count)
+        params.require(:patient_med).permit(:patient_id, :med_id, :time, :notes, :pill_count, :has_taken)
     end
 end

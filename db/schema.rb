@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_11_19_165456) do
     t.integer "patient_id"
     t.integer "med_id"
     t.integer "pill_count"
-    t.boolean "has_taken"
+    t.boolean "has_taken", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

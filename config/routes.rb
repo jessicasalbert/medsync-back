@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :doctors, only: [:show]
       resources :patients, only: [:show]
+      resources :patient_meds, only: [:update, :destroy]
       post '/login', to: 'auth#create'
       post '/patientlogin', to: 'auth#createpatient'
       get '/mdprofile', to: 'doctors#profile'

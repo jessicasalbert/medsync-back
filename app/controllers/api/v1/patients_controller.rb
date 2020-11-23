@@ -1,5 +1,5 @@
 class Api::V1::PatientsController < ApplicationController
-    skip_before_action :authorized
+    # skip_before_action :authorized
 
     def profile
         render json: { user: current_user }, status: :accepted

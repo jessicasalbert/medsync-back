@@ -17,6 +17,6 @@ class Api::V1::PatientMedsController < ApplicationController
     private
 
     def pt_meds_params
-        params.permit(:time, :notes, :pill_count)
+        params.require(:patient_med).permit(:time, :notes, :pill_count)
     end
 end

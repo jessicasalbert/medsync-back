@@ -9,6 +9,7 @@
 Doctor.destroy_all
 Patient.destroy_all
 Med.destroy_all
+Conversation.destroy_all
 
 require 'faker'
 require 'net/http'
@@ -24,7 +25,8 @@ require 'json'
     Patient.create(name: Faker::Name.unique.name, email: "leontine.harvey@braun-hammes.io", image: Faker::Avatar.image, password_digest: BCrypt::Password.create('abc123'), doctor_id: doc1.id)
 
     30.times do 
-        Patient.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, image: Faker::Avatar.image, password_digest: BCrypt::Password.create('abc123'), doctor_id: [doc1.id, doc2.id, doc3.id].sample)
+        pt = Patient.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, image: Faker::Avatar.image, password_digest: BCrypt::Password.create('abc123'), doctor_id: [doc1.id, doc2.id, doc3.id].sample)
+        Conversation.create(patient_id: pt.id, doctor_id: pt.doctor.id)
     end
     
 

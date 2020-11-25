@@ -22,7 +22,8 @@ require 'json'
     doc3 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: BCrypt::Password.create('abc123'))
 
 
-    Patient.create(name: Faker::Name.unique.name, email: "leontine.harvey@braun-hammes.io", image: Faker::Avatar.image, password_digest: BCrypt::Password.create('abc123'), doctor_id: doc1.id)
+    p1 = Patient.create(name: Faker::Name.unique.name, email: "leontine.harvey@braun-hammes.io", image: Faker::Avatar.image, password_digest: BCrypt::Password.create('abc123'), doctor_id: doc1.id)
+    p1 = Conversation.create(patient_id: p1.id, doctor_id: p1.doctor.id)
 
     30.times do 
         pt = Patient.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, image: Faker::Avatar.image, password_digest: BCrypt::Password.create('abc123'), doctor_id: [doc1.id, doc2.id, doc3.id].sample)

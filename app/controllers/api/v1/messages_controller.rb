@@ -10,6 +10,6 @@ class Api::V1::MessagesController < ApplicationController
 
 
     def msg_params
-        params.permit(:patient_id, :doctor_id, :content, :sender_type)
+        params.require(:message).permit(:patient_id, :doctor_id, :content, :sender_type)
     end
 end

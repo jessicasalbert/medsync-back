@@ -8,7 +8,7 @@ class Api::V1::AuthController < ApplicationController
       # encode token comes from ApplicationController
       token = encode_token({ user_id: @user.id })
       puts token
-      render json: { user: @user, jwt: token }, status: :accepted
+      render json: { user: DoctorSerializer.new(@user), jwt: token }, status: :accepted
     else
       render json: { message: 'Invalid username or password' }, status: :unauthorized
     end
@@ -21,7 +21,7 @@ class Api::V1::AuthController < ApplicationController
       # encode token comes from ApplicationController
       token = encode_token({ user_id: @user.id })
       puts token
-      render json: { user: @user, jwt: token }, status: :accepted
+      render json: { user: PatientSerializer.new(@user), jwt: token }, status: :accepted
     else
       render json: { message: 'Invalid username or password' }, status: :unauthorized
     end

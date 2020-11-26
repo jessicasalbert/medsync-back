@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       get '/ptprofile', to: 'patients#profile'
     end
   end
+
+  mount ActionCable.server => '/cable'
 end

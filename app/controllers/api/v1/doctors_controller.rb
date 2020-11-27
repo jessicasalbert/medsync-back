@@ -12,10 +12,9 @@ class Api::V1::DoctorsController < ApplicationController
 
     def availableAppointments
         doctor = Doctor.find(params[:id])
-        date = Date.parse(params[:date]).strftime('%Y-%m-%d')
+        date = "#{params[:month]} #{params[:day]} #{params[:year]}"
+        date = Date.parse(date).strftime('%Y-%m-%d')
         specified_date = doctor.appointments.filter{ |appt| appt.date.strftime('%Y-%m-%d') == date }
-        puts specified_date.class
-        puts "hello"
         taken = specified_date.map{ |appt| appt.time_slot }
         avail = (1..5).filter{ |slot| !taken.include?(slot) }
 

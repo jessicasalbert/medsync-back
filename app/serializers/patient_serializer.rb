@@ -1,10 +1,13 @@
 class PatientSerializer < ApplicationSerializer
-    attributes :id, :email, :name, :patient_meds, :doctor, :conversation_id, :image
+    attributes :id, :email, :name, :patient_meds, :doctor, :conversation_id, :image, :appointments, :age, :weight, :height, :gender
 
     def patient_meds
         ActiveModel::SerializableResource.new(object.patient_meds,  each_serializer: PatientMedSerializer)
     end
 
+    def appointments
+        ActiveModel::SerializableResource.new(object.appointments, each_serializer: AppointmentSerializer)
+    end
 
     def conversation_id
         self.object.conversation.id

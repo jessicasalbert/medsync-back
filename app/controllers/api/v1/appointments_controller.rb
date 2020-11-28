@@ -29,6 +29,12 @@ class Api::V1::AppointmentsController < ApplicationController
         render json: appt
     end
 
+    def destroy
+        apt = Appointment.find(params[:id])
+        apt.delete
+        render json: apt
+    end
+
 
     private
 

@@ -2,14 +2,17 @@ class Api::V1::AppointmentsController < ApplicationController
 
     def create
         timesHash = {
-            "1" => { "start" => "T09:00", "end" => "T09:45" },
-            "2" => { "start" => "T10:30", "end" => "T11:15" },
-            "3" => { "start" => "T12:00", "end" => "T12:45" },
-            "4" => { "start" => "T14:00", "end" => "T14:45" },
-            "5" => { "start" => "T15:30", "end" => "T16:15" }
+            "1" => { "start" => "09:00", "end" => "09:45" },
+            "2" => { "start" => "10:30", "end" => "11:15" },
+            "3" => { "start" => "12:00", "end" => "12:45" },
+            "4" => { "start" => "14:00", "end" => "14:45" },
+            "5" => { "start" => "15:30", "end" => "16:15" }
         }
         date = Date.parse(params[:date]).strftime('%Y-%m-%d')
         slot = params[:time_slot]
+        def format_time(time)
+            time.to_s.sub(/^(\d{1,2})(\d{2})$/,'\1:\2')
+        end
         #byebug
         appt = Appointment.create(
             doctor_id: params[:doctor_id],
@@ -18,8 +21,10 @@ class Api::V1::AppointmentsController < ApplicationController
             details: params[:details],
             time_slot: slot,
             date: date,
-            start_date: date + timesHash[slot.to_s]["start"],
-            end_date: date + timesHash[slot.to_s]["end"]
+            start_date: date + "T" + timesHash[slot.to_s]["start"],
+            end_date: date + "T" + timesHash[slot.to_s]["end"],
+            formatted_date: Date.parse(date).strftime("%a, %d %b %Y"),
+            formatted_time: "#{timesHash[slot.to_s]['start']} - #{timesHash[slot.to_s]['end']}"
             )
         render json: appt
     end

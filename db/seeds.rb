@@ -22,11 +22,11 @@ require 'json'
     doc3 = Doctor.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, password_digest: BCrypt::Password.create('abc123'))
 
 
-    p1 = Patient.create(name: Faker::Name.unique.name, email: "leontine.harvey@braun-hammes.io", image: Faker::Avatar.image, password_digest: BCrypt::Password.create('abc123'), doctor_id: doc1.id)
+    p1 = Patient.create(name: Faker::Name.unique.name, email: "leontine.harvey@braun-hammes.io", image: Faker::Avatar.image, password_digest: BCrypt::Password.create('abc123'), doctor_id: doc1.id, gender: ["M", "F"].sample, age: rand(50..93), height: rand(57..77), weight: rand(95..220))
     p1 = Conversation.create(patient_id: p1.id, doctor_id: p1.doctor.id)
 
     30.times do 
-        pt = Patient.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, image: Faker::Avatar.image, password_digest: BCrypt::Password.create('abc123'), doctor_id: [doc1.id, doc2.id, doc3.id].sample)
+        pt = Patient.create(name: Faker::Name.unique.name, email: Faker::Internet.unique.email, image: Faker::Avatar.image, password_digest: BCrypt::Password.create('abc123'), doctor_id: doc1.id, gender: ["M", "F"].sample, age: rand(50..93), height: rand(57..77), weight: rand(95..220))
         Conversation.create(patient_id: pt.id, doctor_id: pt.doctor.id)
     end
     
@@ -42,8 +42,8 @@ def seed_meds
             data= data["nlmRxImages"]
             index = rand(1..25)
             med = data[index]
-            if med && med["name"] && med['mpc']['shape'] && med['mpc']['color'] && med['imageUrl']
-                Med.create(name: med["name"], pill_shape: med['mpc']['shape'], pill_color: med['mpc']['color'], image_url: med['imageUrl'])
+            if med && med["name"] && med['mpc']['shape'] && med['mpc']['color'] && med['imageUrl'] && med['rxcui']
+                Med.create(name: med["name"], pill_shape: med['mpc']['shape'], pill_color: med['mpc']['color'], image_url: med['imageUrl'], rxcui: med['rxcui'])
             end
         end
     end

@@ -4,5 +4,6 @@ class Patient < ApplicationRecord
     belongs_to :doctor
     has_one :conversation
     has_many :appointments
+    has_many :tests
     has_secure_password
 end

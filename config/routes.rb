@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       resources :messages, only: [:create]
       resources :conversations, only: [:show]
       resources :appointments, only: [:create, :destroy]
+      resources :tests, only: [:create]
+      resources :answers, only: [:create]
+      resources :conditions, only: [:create]
       get '/:id/:year/:month/:day', to: 'doctors#availableAppointments'
       post '/login', to: 'auth#create'
       post '/patientlogin', to: 'auth#createpatient'

@@ -4,6 +4,7 @@ class CreateAnswers < ActiveRecord::Migration[6.0]
       t.string :symptom
       t.string :response
       t.string :question
+      t.integer :test_id
 
       t.timestamps
     end

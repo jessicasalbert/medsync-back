@@ -1,4 +1,5 @@
 class Api::V1::AnswersController < ApplicationController
+    skip_before_action :authorized_patient
     
     def create
         answer = Answer.create(answer_params)

@@ -1,5 +1,5 @@
 class Api::V1::PatientMedsController < ApplicationController
-    # skip_before_action :authorized
+    skip_before_action :authorized_patient
 
    
     def update 

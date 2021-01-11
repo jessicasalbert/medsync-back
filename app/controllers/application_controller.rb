@@ -1,7 +1,7 @@
 
 
 class ApplicationController < ActionController::API
-    before_action :authorized
+    before_action :authorized_patient, :authorized_doctor
    
     def encode_token(payload)
       # should store secret in env variable
@@ -25,22 +25,35 @@ class ApplicationController < ActionController::API
       end
     end
    
-    def current_user
+    def current_doctor
         if decoded_token
           user_id = decoded_token[0]['user_id']
           @user = Doctor.find_by(id: user_id)
-          if !@user
-              @user = Patient.find_by(id: user_id)
-          end
           return @user
         end
     end
-   
-    def logged_in?
-      !!current_user
+
+    def current_patient
+        if decoded_token
+            user_id = decoded_token[0]['user_id']
+            @user = Patient.find_by(id: user_id)
+            return @user
+        end
     end
    
-    def authorized
-      render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
+    def logged_in_patient?
+      !!current_patient
+    end
+
+    def logged_in_doctor?
+      !!current_doctor
+    end
+   
+    def authorized_patient
+      render json: { message: 'Please log in' }, status: :unauthorized unless logged_in_patient?
+    end
+
+    def authorized_doctor
+      render json: { message: 'Please log in' }, status: :unauthorized unless logged_in_doctor?
     end
   end

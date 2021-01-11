@@ -1,4 +1,5 @@
 class Api::V1::AppointmentsController < ApplicationController
+    skip_before_action :authorized_patient
 
     def create
         timesHash = {

@@ -1,5 +1,5 @@
 class Api::V1::AuthController < ApplicationController
-  skip_before_action :authorized, only: [:create, :createpatient]
+  skip_before_action :authorized_patient, :authorized_doctor
  
   def create
     @user = Doctor.find_by(email: user_login_params[:email])
@@ -30,7 +30,6 @@ class Api::V1::AuthController < ApplicationController
   private
  
   def user_login_params
-    # params { user: {username: 'Chandler Bing', password: 'hi' } }
     params.require(:user).permit(:email, :password)
   end
 end

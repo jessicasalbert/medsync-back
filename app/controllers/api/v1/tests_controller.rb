@@ -1,5 +1,6 @@
 class Api::V1::TestsController < ApplicationController
-    
+    skip_before_action :authorized_doctor
+
     def create
         test = Test.create(test_params)
         render json: test

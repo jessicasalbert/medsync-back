@@ -1,5 +1,7 @@
 class Api::V1::DoctorsController < ApplicationController
-    #skip_before_action :authorized
+    # skip_before_action :authorized_patient, only: [:profile, :show]
+    # skip_before_action :authorized_doctor, only: [:availableAppointments]
+    skip_before_action :authorized_patient, :authorized_doctor
     
     def profile
         render json: { user: current_user }, status: :accepted

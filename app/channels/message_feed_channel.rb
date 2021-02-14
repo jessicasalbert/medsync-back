@@ -1,7 +1,6 @@
 class MessageFeedChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
-    puts "SUBSCRIBED" * 10
     p params
     feed = Conversation.find(params[:conversation_id])
     puts feed
@@ -10,6 +9,5 @@ class MessageFeedChannel < ApplicationCable::Channel
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
-    puts "UNSUBSCRIBED" * 10
   end
 end

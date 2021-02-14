@@ -1,24 +1,27 @@
-# README
+<h1 align="center">Welcome to MedSync 👋</h1>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> A ReactJS / Ruby on Rails healthcare application connecting doctors with patients 
 
-Things you may want to cover:
+## Installation
+- [Front-end](https://github.com/jessicasalbert/medsync-front)
 
-* Ruby version
 
-* System dependencies
+## Features
+- React front / integrates with Ruby on Rails back 
+- Material UI for styling
+- JWT authentication for multiple user types - doctors & patients
+- Redux for state management
+- TalkJS used for live chat
+- Informedica API used for dynamic patient symptom interview
 
-* Configuration
 
-* Database creation
+## To Do
+- [ ] Responsiveness
+- [ ] Create unit tests
+- [ ] Refactor components to functional when needed
+- [X] Implement Redux
 
-* Database initialization
 
-* How to run the test suite
+Copyright © 2020 [Jessica Salbert](https://github.com/jessicasalbert).<br />
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+***
